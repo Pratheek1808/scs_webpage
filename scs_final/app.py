@@ -101,7 +101,7 @@ Guidelines:
         bot_response = "Configuration Error: Invalid OpenAI API Key."
     except Exception as e:
         print(f"OpenAI API Error: {e}")
-        bot_response = f"I'm having trouble connecting right now. Please try again or contact us directly at info@shashiconsulting.com."
+        bot_response = f"I'm having trouble connecting right now. Please try again or contact us directly at scshyd2013@gmail.com."
 
     return jsonify({"response": bot_response})
 
