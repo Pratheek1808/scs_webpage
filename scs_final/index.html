@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shashi Consulting Services | Premium Auditing & Financial Solutions</title>
+    <meta name="description"
+        content="Shashi Consulting Services provides world-class auditing, risk advisory, and tax consulting services. Excellence, Integrity, and Trust.">
+    <link rel="icon" type="image/png" href="images/logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFF2F1',
+                        secondary: '#f1edff',
+                        accent: '#6d5b99',
+                        accentHover: '#50427a',
+                        accentLight: 'rgba(109, 91, 153, 0.1)',
+                        textLight: '#2d3748',
+                        textDim: '#4a5568',
+                        headingColor: '#1a202c',
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                        'glass-md': '0 10px 15px -3px rgba(0, 0, 0, 0.2)',
+                        'glow': '0 0 15px rgba(109, 91, 153, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="font-body bg-primary text-textLight leading-relaxed overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 bg-transparent">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px] flex justify-between items-center">
+            <a href="#" class="font-heading text-2xl font-bold text-headingColor transition-colors">
+                Shashi<span class="text-accent">Consulting Services</span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <div id="mobile-menu" class="hidden md:hidden cursor-pointer flex-col gap-[5px] z-[60]">
+                <span class="block w-[25px] h-[3px] bg-accent transition-transform duration-300"></span>
+                <span class="block w-[25px] h-[3px] bg-accent transition-transform duration-300"></span>
+                <span class="block w-[25px] h-[3px] bg-accent transition-transform duration-300"></span>
+            </div>
+
+            <!-- Nav Links -->
+            <ul id="nav-links" class="hidden md:flex items-center gap-8 font-medium text-[0.95rem] text-headingColor">
+                <li><a href="#home" class="hover:text-accent transition-colors nav-link">Home</a></li>
+                <li><a href="#about" class="hover:text-accent transition-colors nav-link">About</a></li>
+                <li><a href="#services" class="hover:text-accent transition-colors nav-link">Services</a></li>
+                <li><a href="#contact"
+                        class="border border-accent px-5 py-2 rounded text-accent hover:bg-accentLight transition-colors nav-link">Contact
+                        Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center bg-primary overflow-hidden">
+        <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px] relative z-10">
+            <div class="max-w-[600px] fade-in-up appear">
+                <h1 class="font-heading text-5xl md:text-6xl font-bold text-headingColor leading-[1.1] mb-5">
+                    Premium <span class="text-accent">Auditing</span><br />& Financial<br />Solutions.
+                </h1>
+                <p class="text-xl text-textDim mb-10 max-w-[600px]">
+                    Empowering your business with clarity, compliance, and strategic foresight. Trust the experts who
+                    care about your growth.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about"
+                        class="px-8 py-3 bg-accent text-primary border-2 border-accent rounded font-medium hover:bg-transparent hover:text-accent transition-all">Explore
+                        Services</a>
+                    <a href="#contact"
+                        class="px-8 py-3 bg-transparent text-accent border-2 border-accent rounded font-medium hover:bg-accentLight hover:text-headingColor transition-all">Get
+                        in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-[150px] relative">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1 w-full fade-in-left">
+                    <div class="relative animate-float">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"
+                            alt="Shashi Consulting Team"
+                            class="w-full rounded-[20px] shadow-glass-md border-2 border-white/50" />
+                    </div>
+                </div>
+                <div class="flex-1 w-full fade-in-right">
+                    <h2
+                        class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-0 after:w-[60px] after:h-[3px] after:bg-accent">
+                        About <span class="text-accent">Shashi Consulting Services</span>
+                    </h2>
+                    <p class="mt-8 mb-4 text-textDim text-lg">
+                        At Shashi Consulting Services, we believe that financial transparency is the bedrock of business
+                        success. With decades of combined experience, our team of certified auditors and consultants
+                        delivers impeccable accuracy and actionable insights.
+                    </p>
+                    <p class="mb-8 text-textDim text-lg">
+                        We don't just find numbers; we unlock value. From regulatory compliance to strategic risk
+                        advisory, we are your partners in sustainable growth.
+                    </p>
+                    <div class="flex gap-10 mt-8 pt-8 border-t border-accentLight">
+                        <div>
+                            <h3 class="font-heading text-3xl font-bold text-accent">27+</h3>
+                            <p class="text-sm">Years Experience</p>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-3xl font-bold text-accent">10000+</h3>
+                            <p class="text-sm">Audits Completed</p>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-3xl font-bold text-accent">100%</h3>
+                            <p class="text-sm">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="py-[150px] bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Meet Our <span class="text-accent">Leadership</span>
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">Visionary leadership driving excellence and
+                    integrity.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-10 mt-10">
+                <!-- Shashikala -->
+                <div
+                    class="flex-1 min-w-[300px] max-w-[400px] bg-white/60 backdrop-blur-md p-10 rounded-2xl text-center shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 fade-in-up delay-100">
+                    <div class="w-[120px] h-[120px] mx-auto mb-5 rounded-full overflow-hidden border-4 border-accent">
+                        <img src="images/shashikala.jpg" alt="Shashikala"
+                            class="w-full h-full object-cover object-top" />
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-1">Shashikala</h3>
+                    <span class="block text-accent font-medium text-sm tracking-wide uppercase mb-4">Founder &
+                        CEO</span>
+                    <p class="text-textDim">With over 20 years of experience in auditing and financial consulting,
+                        Shashi leads with a vision of uncompromised quality and client trust.</p>
+                </div>
+                <!-- Lakshmi Prasana -->
+                <div
+                    class="flex-1 min-w-[300px] max-w-[400px] bg-white/60 backdrop-blur-md p-10 rounded-2xl text-center shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 fade-in-up delay-200">
+                    <div class="w-[120px] h-[120px] mx-auto mb-5 rounded-full overflow-hidden border-4 border-accent">
+                        <img src="images/lakshmi-prasana.png" alt="Lakshmi Prasana"
+                            class="w-full h-full object-cover" />
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-1">Lakshmi Prasana</h3>
+                    <span class="block text-accent font-medium text-sm tracking-wide uppercase mb-4">Co-Founder &
+                        Managing Partner</span>
+                    <p class="text-textDim">An expert in tax strategy and risk advisory, Lakshmi ensures that every
+                        client receives tailored financial solutions for sustainable growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Members Section -->
+    <section id="our-members" class="py-[150px] bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Our <span class="text-accent">Members</span>
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">Meet the dedicated professionals who make it
+                    all happen.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                <!-- Member 1 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl text-center shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 fade-in-up delay-100">
+                    <div class="w-[120px] h-[120px] mx-auto mb-5 rounded-full overflow-hidden border-4 border-accent">
+                        <img src="images/swetha.jpg" alt="S Swetha" class="w-full h-full object-cover object-top" />
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-1">S Swetha</h3>
+                    <span class="block text-accent font-medium text-[0.85rem] tracking-wide uppercase mb-4">CA</span>
+                    <p class="text-textDim text-sm">Leverages her expertise as a Chartered Accountant to
+                        provide strategic financial insights and ensure rigorous compliance.</p>
+                </div>
+                <!-- Member 2 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl text-center shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 fade-in-up delay-200">
+                    <div class="w-[120px] h-[120px] mx-auto mb-5 rounded-full overflow-hidden border-4 border-accent">
+                        <img src="images/vamshi.jpg" alt="Vamshi Krishna"
+                            class="w-full h-full object-cover object-top brightness-[1.3] contrast-[1.1]" />
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-1">Vamshi Krishna</h3>
+                    <span class="block text-accent font-medium text-[0.85rem] tracking-wide uppercase mb-4">General
+                        Manager</span>
+                    <p class="text-textDim text-sm">Vamshi Krishna brings exceptional leadership as General Manager,
+                        ensuring operational excellence and strategic foresight across all our endeavors.</p>
+                </div>
+                <!-- Member 3 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl text-center shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 fade-in-up delay-300">
+                    <div class="w-[120px] h-[120px] mx-auto mb-5 rounded-full overflow-hidden border-4 border-accent">
+                        <img src="images/pratheek.jpg" alt="Pratheek"
+                            class="w-full h-full object-cover object-bottom" />
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-1">Pratheek</h3>
+                    <span class="block text-accent font-medium text-[0.85rem] tracking-wide uppercase mb-4">Software
+                        Development</span>
+                    <p class="text-textDim text-sm">Pratheek drives our digital transformation and software development,
+                        ensuring our technology solutions are cutting-edge and robust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-[150px] bg-secondary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Our Expertise
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">Comprehensive solutions tailored to your
+                    unique financial landscape.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">Financial Auditing</h3>
+                    <p class="text-textDim text-[0.95rem]">Rigorous examination of financial records to ensure accuracy,
+                        compliance, and transparency for stakeholders.</p>
+                </div>
+                <!-- Service 2 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-100">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">Factory Registration</h3>
+                    <p class="text-textDim text-[0.95rem]">Complete assistance with registration under the Factories
+                        Act, ensuring your manufacturing unit complies with all safety and labor regulations.</p>
+                </div>
+                <!-- Service 3 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-200">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"></path>
+                            <path d="M5 21V7l8-4 8 4v14"></path>
+                            <path d="M9 10a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v11H9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">S&E Registration</h3>
+                    <p class="text-textDim text-[0.95rem]">Hassle-free Shops & Establishments Act registration for your
+                        commercial entity, handling all local municipal requirements.</p>
+                </div>
+                <!-- Service 4 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">ESIC Registration</h3>
+                    <p class="text-textDim text-[0.95rem]">Employees' State Insurance Corporation registration support
+                        to provide social security and health insurance benefits to your workforce.</p>
+                </div>
+                <!-- Service 5 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-100">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="21" width="18" height="2"></rect>
+                            <rect x="4" y="9" width="4" height="12"></rect>
+                            <rect x="16" y="9" width="4" height="12"></rect>
+                            <polygon points="12 2 2 7 22 7"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">EPFO Registration</h3>
+                    <p class="text-textDim text-[0.95rem]">Employees' Provident Fund Organization registration services
+                        to secure your employees' future and ensure statutory compliance.</p>
+                </div>
+                <!-- Service 6 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-200">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="8" width="18" height="12" rx="2"></rect>
+                            <path d="M12 8v12"></path>
+                            <path d="M19 12v-2c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v2"></path>
+                            <path d="M12 8c2-2 3.6-2.6 6-1.5"></path>
+                            <path d="M12 8c-2-2-3.6-2.6-6-1.5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-headingColor mb-4">Payment of Gratuity</h3>
+                    <p class="text-textDim text-[0.95rem]">Guidance on Gratuity Act registration and compliance,
+                        ensuring timely and correct gratuity payments to your eligible employees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Codes Section -->
+    <section id="safety-security-codes" class="py-[150px] bg-secondary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Safety & <span class="text-accent">Security Codes</span>
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">Prioritizing workforce safety and industrial
+                    security compliance.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Code 1 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M2 12h20" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-4">The Code on Wages, 2019</h3>
+                    <p class="text-textDim text-[0.95rem]">Ensuring timely wages and standardized remuneration
+                        structures.</p>
+                </div>
+                <!-- Code 2 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-100">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-4">The Social Security Code, 2020
+                    </h3>
+                    <p class="text-textDim text-[0.95rem]">Extending social security benefits to all employees and
+                        workers.</p>
+                </div>
+                <!-- Code 3 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-200">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-4">Occupational Safety & Health</h3>
+                    <p class="text-textDim text-[0.95rem]">Regulating health, safety, and working conditions in
+                        establishments.</p>
+                </div>
+                <!-- Code 4 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-4 hover:shadow-glow hover:border-accent transition-all duration-300 cursor-pointer fade-in-up delay-300">
+                    <div class="text-accent mb-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-headingColor mb-4">Industrial Safety Code, 2020</h3>
+                    <p class="text-textDim text-[0.95rem]">Implementing robust industrial safety and security protocols.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-[150px] bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Client <span class="text-accent">Testimonials</span>
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">What our partners say about working with
+                    Shashi Consulting Services.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-2 hover:shadow-glass-md hover:border-accent transition-all duration-300 relative fade-in-up">
+                    <div class="text-5xl text-accent/30 absolute top-5 left-5 leading-none">❝</div>
+                    <p class="italic text-textDim mb-5 relative z-10">Shashi Consulting Services has been pivotal in
+                        streamlining our financial audits. Their attention to detail and regulatory knowledge is
+                        unmatched.</p>
+                    <div class="pt-4 border-t border-accent/20">
+                        <h4 class="font-heading text-lg font-bold text-headingColor mb-0.5">Rajesh Kumar</h4>
+                        <span class="text-accent font-medium text-sm">CFO, TechSolutions India</span>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-2 hover:shadow-glass-md hover:border-accent transition-all duration-300 relative fade-in-up delay-100">
+                    <div class="text-5xl text-accent/30 absolute top-5 left-5 leading-none">❝</div>
+                    <p class="italic text-textDim mb-5 relative z-10">The team provided excellent support during our
+                        factory registration process. Minimal hassle and professional guidance throughout.</p>
+                    <div class="pt-4 border-t border-accent/20">
+                        <h4 class="font-heading text-lg font-bold text-headingColor mb-0.5">Anita Desai</h4>
+                        <span class="text-accent font-medium text-sm">HR Director, Manufacturing Corp</span>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-white/60 backdrop-blur-md p-10 rounded-2xl shadow-glass border border-accent/20 hover:-translate-y-2 hover:shadow-glass-md hover:border-accent transition-all duration-300 relative fade-in-up delay-200">
+                    <div class="text-5xl text-accent/30 absolute top-5 left-5 leading-none">❝</div>
+                    <p class="italic text-textDim mb-5 relative z-10">Their insights into the new labour codes helped us
+                        prepare well in advance. A truly strategic partner for our business.</p>
+                    <div class="pt-4 border-t border-accent/20">
+                        <h4 class="font-heading text-lg font-bold text-headingColor mb-0.5">Vikram Singh</h4>
+                        <span class="text-accent font-medium text-sm">CEO, Global Ventures</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-[150px] bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-16 fade-in-up">
+                <h2
+                    class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-1/2 after:-translate-x-1/2 after:w-[60px] after:h-[3px] after:bg-accent">
+                    Trusted by <span class="text-accent">Industry Leaders</span>
+                </h2>
+                <p class="text-textDim max-w-[600px] mx-auto mt-6 text-lg">Partnering with top organizations to drive
+                    financial excellence.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center mt-12">
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 rounded-2xl h-[100px] flex items-center justify-center border border-accent/20 shadow-glass transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-glow hover:border-accent client-card fade-in-up">
+                    <img src="images/tata-logo.png" alt="Tata"
+                        class="max-h-[50px] max-w-full grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110" />
+                </div>
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 rounded-2xl h-[100px] flex items-center justify-center border border-accent/20 shadow-glass transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-glow hover:border-accent client-card fade-in-up delay-100">
+                    <img src="images/aditya-birla-logo.png" alt="Aditya Birla"
+                        class="max-h-[50px] max-w-full grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110" />
+                </div>
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 rounded-2xl h-[100px] flex items-center justify-center border border-accent/20 shadow-glass transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-glow hover:border-accent client-card fade-in-up delay-200">
+                    <img src="images/ndr-logo.png" alt="NDR"
+                        class="max-h-[50px] max-w-full grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110" />
+                </div>
+                <div
+                    class="bg-white/60 backdrop-blur-md p-8 rounded-2xl h-[100px] flex items-center justify-center border border-accent/20 shadow-glass transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-glow hover:border-accent client-card fade-in-up delay-300">
+                    <img src="images/skyroot-logo.png" alt="Skyroot"
+                        class="max-h-[50px] max-w-full grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-110" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-[150px] text-center relative bg-cover bg-fixed bg-center"
+        style="background-image: linear-gradient(rgba(255, 242, 241, 0.8), rgba(255, 242, 241, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px] relative z-10">
+            <h2 class="font-heading text-5xl font-bold text-headingColor mb-5 fade-in-up">Integrity. Insight. Impact.
+            </h2>
+            <p class="text-xl text-textLight mb-10 fade-in-up">Partner with a firm that values your reputation as much
+                as you do.</p>
+            <a href="#contact"
+                class="px-8 py-3 bg-accent text-primary border-2 border-accent rounded font-medium hover:bg-transparent hover:text-accent transition-all inline-block fade-in-up">Schedule
+                a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-[150px] bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="flex-1 fade-in-left">
+                    <h2
+                        class="font-heading text-4xl font-bold text-headingColor mb-5 inline-block relative after:content-[''] after:absolute after:-bottom-2.5 after:left-0 after:w-[60px] after:h-[3px] after:bg-accent">
+                        Get in Touch
+                    </h2>
+                    <p class="text-textDim text-lg mb-10 mt-6">Ready to elevate your financial standing? Contact us
+                        today.</p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-5 -mt-1">📍</span>
+                            <div>
+                                <h4 class="font-heading text-lg font-bold text-headingColor mb-1">Location</h4>
+                                <p class="text-textDim">404 4th floor Avasa Residency Kushaiguda ECIL <br />Hyderabad,
+                                    Telangana,
+                                    500062</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-5 -mt-1">📧</span>
+                            <div>
+                                <h4 class="font-heading text-lg font-bold text-headingColor mb-1">Email</h4>
+                                <p class="text-textDim">scshyd2013@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-2xl mr-5 -mt-1">📞</span>
+                            <div>
+                                <h4 class="font-heading text-lg font-bold text-headingColor mb-1">Phone</h4>
+                                <p class="text-textDim">+91 9491038955,+91 9490937664</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-[1.2] fade-in-right">
+                    <form id="contactForm"
+                        class="bg-secondary p-10 rounded-xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]">
+                        <div class="mb-5">
+                            <label for="name" class="block mb-2 text-textLight text-sm">Name</label>
+                            <input type="text" id="name" required placeholder="Your Name"
+                                class="w-full p-3 bg-white/60 text-headingColor border border-accent/20 rounded font-body focus:outline-none focus:border-accent transition-colors" />
+                        </div>
+                        <div class="mb-5">
+                            <label for="email" class="block mb-2 text-textLight text-sm">Email</label>
+                            <input type="email" id="email" required placeholder="your@email.com"
+                                class="w-full p-3 bg-white/60 text-headingColor border border-accent/20 rounded font-body focus:outline-none focus:border-accent transition-colors" />
+                        </div>
+                        <div class="mb-5">
+                            <label for="message" class="block mb-2 text-textLight text-sm">Message</label>
+                            <textarea id="message" rows="5" required placeholder="How can we help you?"
+                                class="w-full p-3 bg-white/60 text-headingColor border border-accent/20 rounded font-body focus:outline-none focus:border-accent transition-colors"></textarea>
+                        </div>
+
+                        <div id="form-status" class="mb-4 text-sm font-medium"></div>
+
+                        <button type="submit" id="submit-btn"
+                            class="w-full px-8 py-3 bg-accent text-primary border-2 border-accent rounded font-medium hover:bg-transparent hover:text-accent transition-all flex justify-center items-center gap-2 disabled:bg-opacity-50">
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-primary border-t border-accentLight">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-6 md:mb-0">
+                    <img src="images/logo.png" alt="Shashi Consulting Services" class="h-[50px] mb-4 mx-auto md:mx-0" />
+                    <p class="text-textDim text-sm">&copy; 2024 Shashi Consulting Services. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#about"
+                        class="text-headingColor hover:text-accent transition-colors text-sm font-medium">About</a>
+                    <a href="#services"
+                        class="text-headingColor hover:text-accent transition-colors text-sm font-medium">Services</a>
+                    <a href="privacy-policy.html"
+                        class="text-headingColor hover:text-accent transition-colors text-sm font-medium">Privacy
+                        Policy</a>
+                    <a href="terms-of-service.html"
+                        class="text-headingColor hover:text-accent transition-colors text-sm font-medium">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Component -->
+    <div class="chatbot-floating-mascot" id="chatbot-mascot-container">
+        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Robot.png"
+            alt="Robot Mascot" width="60" height="60" class="chatbot-avatar" id="chatbot-mascot" />
+    </div>
+
+    <button class="chatbot-toggler" id="chatbot-toggler">
+        <span class="material-symbols-rounded">chat</span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <div class="chatbot" id="chatbot-ui">
+        <header>
+            <h2>Chat with us</h2>
+            <span class="close-btn material-symbols-outlined" id="close-btn">close</span>
+        </header>
+        <ul class="chatbox" id="chatbox">
+            <!-- Initial Message -->
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there 👋<br />How can I help you today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea id="chat-input-field" placeholder="Enter a message..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

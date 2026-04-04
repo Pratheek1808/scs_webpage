@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service | Shashi Consulting Services</title>
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFF2F1',
+                        secondary: '#f1edff',
+                        accent: '#6d5b99',
+                        textLight: '#2d3748',
+                        textDim: '#4a5568',
+                        headingColor: '#1a202c',
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="font-body bg-primary text-textLight leading-relaxed overflow-x-hidden pt-[100px]">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#fff2f1] shadow-sm py-[15px]">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px] flex justify-between items-center">
+            <a href="index.html" class="font-heading text-2xl font-bold text-headingColor">
+                Shashi<span class="text-accent">Consulting Services</span>
+            </a>
+            <a href="index.html" class="font-medium text-accent hover:text-headingColor transition-colors">← Back to
+                Home</a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="container mx-auto px-4 w-[90%] max-w-[800px] py-[50px] min-h-[70vh]">
+        <h1
+            class="font-heading text-4xl font-bold text-headingColor mb-8 relative inline-block after:content-[''] after:absolute after:-bottom-2.5 after:left-0 after:w-[60px] after:h-[3px] after:bg-accent">
+            Terms of Service</h1>
+
+        <div class="prose text-textDim space-y-6 mt-10">
+            <p>Last updated: April 2026</p>
+
+            <h2 class="text-2xl font-semibold text-headingColor mt-8 mb-4">1. Agreement to Terms</h2>
+            <p>These Terms of Service constitute a legally binding agreement made between you and Shashi Consulting
+                Services, concerning your access to and use of our website and services.</p>
+
+            <h2 class="text-2xl font-semibold text-headingColor mt-8 mb-4">2. Services and Consultation</h2>
+            <p>We provide professional consulting services including Financial Auditing, Factory Registration, Labour
+                Law Compliance, and other related services. Any timeline or estimate provided by us is an approximation
+                and might vary depending on governmental and regulatory responsiveness.</p>
+
+            <h2 class="text-2xl font-semibold text-headingColor mt-8 mb-4">3. Client Responsibilities</h2>
+            <p>You agree to provide true, accurate, current, and complete information requested by our team for the
+                fulfillment of consulting services. Failure to do so may result in delays or the inability to complete
+                the requested services.</p>
+
+            <h2 class="text-2xl font-semibold text-headingColor mt-8 mb-4">4. Intellectual Property</h2>
+            <p>Unless otherwise indicated, the website and its original content, features, and functionality are owned
+                by Shashi Consulting Services and are protected by international copyright, trademark, patent, trade
+                secret, and other intellectual property laws.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-primary border-t border-accent/10 mt-[100px]">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-textDim text-sm">&copy; 2026 Shashi Consulting Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
