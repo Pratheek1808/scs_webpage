@@ -89,7 +89,7 @@ Your goal is to assist visitors with information about our auditing, risks advis
 Company Context:
 - Name: Shashi Consulting Services
 - Founders: Shashikala (CEO) and Lakshmi Prasana (Co-Founder & Managing Partner).
-- Location: 404 4th floor Avasa Residency Kushaiguda ECIL
+- Location: 403 4th floor Avasa Residency Kushaiguda ECIL
 Hyderabad, Telangana, 500062.
 - Contact: scshyd2013@gmail.com | +91 9491038955,+91 9490937664
 - Services: Financial Auditing, Factory Registration, Labour Law Compliance, Payroll Management, S&E Registration, ESIC/EPFO Registration, Payment of Gratuity.
