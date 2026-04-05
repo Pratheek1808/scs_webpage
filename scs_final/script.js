@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.className = 'mb-4 text-sm font-medium';
 
             try {
-                const submitUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/submit-contact' : '/submit-contact';
+                const submitUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/api/submit-contact' : '/api/submit-contact';
                 const response = await fetch(submitUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageElement = incomingChatLi.querySelector("p");
 
         try {
-            const chatUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/chat' : '/chat';
+            const chatUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/api/chat' : '/api/chat';
             const response = await fetch(chatUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

@@ -32,7 +32,7 @@ def serve_index():
 def serve_static(path):
     return send_from_directory('.', path)
 
-@app.route('/submit-contact', methods=['POST'])
+@app.route('/api/submit-contact', methods=['POST'])
 def submit_contact():
     data = request.get_json(silent=True) or {}
     
@@ -72,7 +72,7 @@ def submit_contact():
     
     return jsonify({"status": "success", "message": "Message received!"})
 
-@app.route('/chat', methods=['POST'])
+@app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json(silent=True) or {}
     user_message = data.get('message', '')
