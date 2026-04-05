@@ -3,12 +3,24 @@ from flask import Flask, send_from_directory, request, jsonify
 from dotenv import load_dotenv
 import openai
 from flask_cors import CORS
+from supabase import create_client, Client
 
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 CORS(app) # Enable CORS for all routes
+
+# Supabase Initialization
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+supabase: Client = None
+if SUPABASE_URL and SUPABASE_KEY:
+    try:
+        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+        print("Supabase client initialized.")
+    except Exception as e:
+        print(f"Failed to initialize Supabase: {e}")
 
 # OpenAI API key loaded from .env
 
@@ -28,21 +40,34 @@ def submit_contact():
     import csv
     from datetime import datetime
     
-    file_exists = os.path.isfile('messages.csv')
+    try:
+        file_exists = os.path.isfile('messages.csv')
+        with open('messages.csv', 'a', newline='') as f:
+            writer = csv.writer(f)
+            if not file_exists:
+                writer.writerow(['Timestamp', 'Name', 'Email', 'Message'])
+            
+            writer.writerow([
+                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                data.get('name', ''),
+                data.get('email', ''),
+                data.get('message', '')
+            ])
+    except Exception as e:
+        print(f"Skipping CSV save (likely read-only serverless environment): {e}")
     
-    with open('messages.csv', 'a', newline='') as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(['Timestamp', 'Name', 'Email', 'Message'])
-        
-        writer.writerow([
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            data.get('name', ''),
-            data.get('email', ''),
-            data.get('message', '')
-        ])
+    # Save to Supabase
+    if supabase:
+        try:
+            supabase.table('contacts').insert({
+                "name": data.get('name', ''),
+                "email": data.get('email', ''),
+                "message": data.get('message', '')
+            }).execute()
+            print("Contact successfully saved to Supabase DB.")
+        except Exception as e:
+            print(f"Supabase Insert Error: {e}")
     
-    # In a real app, you would send an email or save to DB here
     print(f"New Contact Form Submission: {data}")
     
     return jsonify({"status": "success", "message": "Message received!"})

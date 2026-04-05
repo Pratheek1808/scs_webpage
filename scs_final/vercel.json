@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/submit-contact",
+            "destination": "/api/index"
+        },
+        {
+            "source": "/chat",
+            "destination": "/api/index"
+        }
+    ]
+}

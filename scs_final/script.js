@@ -195,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.className = 'mb-4 text-sm font-medium';
 
             try {
-                const response = await fetch('/submit-contact', {
+                const submitUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/submit-contact' : '/submit-contact';
+                const response = await fetch(submitUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, message })
@@ -263,7 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageElement = incomingChatLi.querySelector("p");
 
         try {
-            const response = await fetch("/chat", {
+            const chatUrl = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000/chat' : '/chat';
+            const response = await fetch(chatUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userMessage })
