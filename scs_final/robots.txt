@@ -1,0 +1,6 @@
+# Robots.txt for Shashi Consulting Services
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://scs-webpage.vercel.app/sitemap.xml
