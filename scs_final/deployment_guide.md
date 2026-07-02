@@ -1,51 +1,42 @@
-# Deployment Guide for Shashi Consulting Services
+# Deployment Guide — Shashi Consulting Services
 
-This guide explains how to deploy your landing page with its Python backend to **Render.com** (a popular platform with a free tier).
+The site is deployed on **Vercel** at https://www.shashiconsultingservices.in.
 
-## Prerequisites
-- A GitHub account.
-- The project files must be in a Git repository pushed to GitHub.
+## How it's wired
 
-## Steps
+- Static files (HTML/CSS/JS/images) are served directly by Vercel.
+- `vercel.json` rewrites `/api/*` to `api/index.py`, which loads the Flask app
+  from `app.py` as a serverless function (handles the contact form and chatbot).
+- `cleanUrls: true` means pages are reachable without `.html`
+  (e.g. `/payroll` serves `payroll.html`).
 
-### 1. Push to GitHub
-If you haven't already:
-1. Create a repository on GitHub.
-2. Initialize git in your `sashi-consulting` folder:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
+## Environment variables (set in the Vercel dashboard, never in git)
 
-### 2. Create a Web Service on Render
-1. Go to [dashboard.render.com](https://dashboard.render.com/) and sign up/login.
-2. Click **New +** -> **Web Service**.
-3. Connect your GitHub account and select your repository.
+| Variable | Purpose |
+|---|---|
+| `OPENAI_API_KEY` | Chatbot responses (`/api/chat`) |
+| `SUPABASE_URL` | Contact form storage |
+| `SUPABASE_KEY` | Contact form storage |
 
-### 3. Configure the Service
-- **Name**: `sashi-consulting` (or any name you like)
-- **Region**: Closest to you (e.g., Singapore, Oregon)
-- **Branch**: `main`
-- **Runtime**: **Python 3**
-- **Build Command**: `pip install -r requirements.txt`
-- **Start Command**: `gunicorn app:app`
-- **Instance Type**: **Free**
+Project → Settings → Environment Variables. After changing one, redeploy.
 
-### 4. Deploy
-1. Click **Create Web Service**.
-2. Render will start building your app. This acts like a real server installation.
-3. Once valid, you will get a URL like `https://shashi-consulting.onrender.com`.
+## Deploying
 
-### 5. Verify
-- Visit the URL.
-- Test the "Contact Us" form. It should submit successfully!
+Pushing to `main` on GitHub triggers an automatic Vercel deployment.
+Preview deployments are created for pull requests.
 
-## Local Testing
-To run this locally before deploying:
-1. Open terminal in the `sashi-consulting` folder.
-2. Install libraries: `pip install -r requirements.txt`
-3. Run app: `python app.py`
-4. Open `http://localhost:5000`
+## Local development
+
+1. Create a `.env` file in this folder with the three variables above
+   (`.env` is gitignored — keep it that way).
+2. `pip install -r requirements.txt`
+3. `python app.py` → http://localhost:5000
+
+Note: locally, Flask serves the static files itself and only whitelisted
+file types are served — `.env`, `.py`, `.csv` etc. return 404 by design.
+
+## Contact form storage
+
+Submissions go to the Supabase `contacts` table. On local runs they are
+also appended to `messages.csv` (gitignored — contains personal data,
+never commit it).

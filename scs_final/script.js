@@ -24,17 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('nav-links');
     const navItems = document.querySelectorAll('.nav-link');
 
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('bg-[#fff2f1]/95', 'shadow-glass-md', 'backdrop-blur-md', 'py-[15px]');
-            navbar.classList.remove('bg-transparent', 'py-5');
-        } else {
-            navbar.classList.add('bg-transparent', 'py-5');
-            navbar.classList.remove('bg-[#fff2f1]/95', 'shadow-glass-md', 'backdrop-blur-md', 'py-[15px]');
-        }
-    });
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-[#fff2f1]/95', 'shadow-glass-md', 'backdrop-blur-md', 'py-[15px]');
+                navbar.classList.remove('bg-transparent', 'py-5');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-5');
+                navbar.classList.remove('bg-[#fff2f1]/95', 'shadow-glass-md', 'backdrop-blur-md', 'py-[15px]');
+            }
+            scrollTicking = false;
+        });
+    }, { passive: true });
 
     mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+        mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
         navLinks.classList.toggle('hidden');
         navLinks.classList.toggle('flex');
         navLinks.classList.toggle('flex-col');
@@ -52,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth < 768) {
                 navLinks.classList.add('hidden');
                 navLinks.classList.remove('flex', 'flex-col', 'absolute', 'top-[100%]', 'left-0', 'w-full', 'bg-[#fff2f1]', 'p-5', 'shadow-glass-md');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             }
         });
     });
@@ -151,8 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
+        // Pause the render loop while the hero is scrolled out of view —
+        // otherwise it burns CPU/battery at 60fps for the whole visit
         const clock = new THREE.Clock();
+        let heroVisible = true;
+        let animRunning = false;
+
         const animate = () => {
+            if (!heroVisible) {
+                animRunning = false;
+                return;
+            }
+            animRunning = true;
             requestAnimationFrame(animate);
             const t = clock.getElapsedTime();
 
@@ -172,7 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             renderer.render(scene, camera);
         };
-        animate();
+
+        new IntersectionObserver((entries) => {
+            heroVisible = entries[0].isIntersecting;
+            if (heroVisible && !animRunning) animate();
+        }).observe(canvas);
     };
 
     initThreeJS();
@@ -214,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 console.error('Fetch Error:', error);
-                formStatus.textContent = '❌ Unable to send message. Please checking your internet connection and ensure the server is running.';
+                formStatus.textContent = '❌ Unable to send message. Please check your internet connection and try again.';
                 formStatus.classList.add('text-red-500');
             } finally {
                 submitBtn.disabled = false;
@@ -247,16 +270,22 @@ document.addEventListener('DOMContentLoaded', () => {
     chatbotToggler.addEventListener('click', toggleChat);
     chatbotCloseBtn.addEventListener('click', toggleChat);
 
+    // Built with textContent (not innerHTML) so user input can never inject HTML
     const createChatLi = (message, className, isError = false) => {
         const chatLi = document.createElement("li");
         chatLi.classList.add("chat", className);
-        if (isError) chatLi.classList.add("error");
 
-        let chatContent = className === "outgoing"
-            ? `<p>${message}</p>`
-            : `<span class="material-symbols-outlined">smart_toy</span><p class="${isError ? 'error' : ''}">${message}</p>`;
+        if (className === "incoming") {
+            const icon = document.createElement("span");
+            icon.classList.add("material-symbols-outlined");
+            icon.textContent = "smart_toy";
+            chatLi.appendChild(icon);
+        }
 
-        chatLi.innerHTML = chatContent;
+        const p = document.createElement("p");
+        if (isError) p.classList.add("error");
+        p.textContent = message;
+        chatLi.appendChild(p);
         return chatLi;
     }
 
@@ -296,12 +325,10 @@ document.addEventListener('DOMContentLoaded', () => {
         chatbox.appendChild(outgoingChatLi);
         chatbox.scrollTo(0, chatbox.scrollHeight);
 
-        setTimeout(() => {
-            const incomingChatLi = createChatLi("Thinking...", "incoming");
-            chatbox.appendChild(incomingChatLi);
-            chatbox.scrollTo(0, chatbox.scrollHeight);
-            generateResponse(incomingChatLi, userMessage);
-        }, 600);
+        const incomingChatLi = createChatLi("Thinking...", "incoming");
+        chatbox.appendChild(incomingChatLi);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        generateResponse(incomingChatLi, userMessage);
     }
 
     chatInput.addEventListener('input', () => {
