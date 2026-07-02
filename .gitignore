@@ -1,0 +1,28 @@
+# Secrets — never commit these anywhere in the repo
+.env
+*.env
+!.env.example
+secret_key.txt
+auth.json
+
+# User data
+messages.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# Tooling
+.claude/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
