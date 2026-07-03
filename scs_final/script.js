@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementById('hero-canvas');
         if (!canvas || typeof THREE === 'undefined') return;
 
+        // Decorative only — skip entirely for users who asked for less motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         const scene = new THREE.Scene();
         scene.fog = new THREE.FogExp2('#FFF2F1', 0.035);
 
@@ -103,7 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const shapes = [];
-        for (let i = 0; i < 40; i++) {
+        // Fewer shapes on phones — halves GPU work with no visible loss on a small screen
+        const shapeCount = window.innerWidth < 768 ? 18 : 40;
+        for (let i = 0; i < shapeCount; i++) {
             const geoIndex = Math.floor(Math.random() * geometries.length);
             const geometry = geometries[geoIndex];
 
