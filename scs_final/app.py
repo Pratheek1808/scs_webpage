@@ -80,10 +80,16 @@ def serve_index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    ext = os.path.splitext(path)[1].lower()
-    if os.path.basename(path).startswith('.') or ext not in ALLOWED_STATIC_EXTENSIONS:
+    if os.path.basename(path).startswith('.'):
         abort(404)
-    return send_from_directory('.', path)
+    ext = os.path.splitext(path)[1].lower()
+    # Clean URL: /payroll -> payroll.html, matching vercel.json cleanUrls so
+    # extensionless links work whether Vercel or this function serves them
+    if not ext and os.path.isfile(os.path.join(os.path.dirname(__file__), path + '.html')):
+        return send_from_directory(os.path.dirname(__file__), path + '.html')
+    if ext not in ALLOWED_STATIC_EXTENSIONS:
+        abort(404)
+    return send_from_directory(os.path.dirname(__file__), path)
 
 
 @app.route('/api/submit-contact', methods=['POST'])
