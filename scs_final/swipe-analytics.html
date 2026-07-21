@@ -38,7 +38,7 @@
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 bg-[#fff2f1]/95 shadow-glass-md backdrop-blur-md">
         <div class="container mx-auto px-4 w-[90%] max-w-[1200px] flex justify-between items-center">
             <a href="index.html" class="font-heading text-xl md:text-2xl font-bold text-headingColor transition-colors">
-                Shashi<span class="text-accent">Consulting Services</span>
+                Shashi <span class="text-accent">Consulting Services</span>
             </a>
             <a href="index.html#digital-solutions"
                 class="text-accent font-medium hover:underline transition-colors text-sm shrink-0">←
@@ -209,6 +209,79 @@
                     </div>
                     <h3 class="font-heading text-lg font-bold text-headingColor mb-2">Format B — Swipes Only</h3>
                     <p class="text-textDim text-sm">Minimal export with just employee ID and swipe timestamps — employee details resolved from master data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Report (real output) -->
+    <style>
+        .rpt{width:100%;border-collapse:collapse;font-size:.85rem}
+        .rpt th,.rpt td{padding:.55rem .75rem;border-bottom:1px solid rgba(109,91,153,.15);text-align:left;white-space:nowrap}
+        .rpt th{background:rgba(109,91,153,.10);color:#1a202c;font-weight:600}
+        .rpt td.num,.rpt th.num{text-align:right;font-variant-numeric:tabular-nums}
+        .rpt td.net{font-weight:700;color:#50427a}
+        .rpt tbody tr:hover td{background:rgba(109,91,153,.05)}
+        .bar{display:inline-block;width:64px;height:8px;border-radius:4px;background:rgba(109,91,153,.15);vertical-align:middle;margin-right:8px;overflow:hidden}
+        .bar span{display:block;height:100%;background:#6d5b99}
+        .pct{font-variant-numeric:tabular-nums;font-size:.8rem}
+        .sev{display:inline-block;padding:.1rem .55rem;border-radius:999px;background:#fef3c7;color:#92400e;font-size:.7rem;font-weight:600}
+        .rpt-wrap{overflow-x:auto;border-radius:.75rem;border:1px solid rgba(109,91,153,.2)}
+    </style>
+    <section class="py-20 bg-primary">
+        <div class="container mx-auto px-4 w-[90%] max-w-[1200px]">
+            <div class="text-center mb-4">
+                <span class="inline-block text-accent font-medium text-sm tracking-widest uppercase">Real Output</span>
+            </div>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-headingColor mb-2 text-center">Sample Report — May 2026</h2>
+            <p class="text-textDim text-center max-w-[600px] mx-auto mb-12">Generated from a real client's raw swipe data (GDC / GPHS unit).</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-glass border border-accent/20 text-center">
+                    <div class="font-heading text-3xl font-bold text-accent">5</div><div class="text-textDim text-xs mt-1">Employees</div></div>
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-glass border border-accent/20 text-center">
+                    <div class="font-heading text-3xl font-bold text-accent">25</div><div class="text-textDim text-xs mt-1">Working Days</div></div>
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-glass border border-accent/20 text-center">
+                    <div class="font-heading text-3xl font-bold text-accent">72%</div><div class="text-textDim text-xs mt-1">Avg Attendance</div></div>
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-glass border border-accent/20 text-center">
+                    <div class="font-heading text-3xl font-bold text-accent">35.7<span class="text-lg">h</span></div><div class="text-textDim text-xs mt-1">Overtime</div></div>
+                <div class="bg-white/60 backdrop-blur-md p-5 rounded-2xl shadow-glass border border-accent/20 text-center">
+                    <div class="font-heading text-3xl font-bold text-accent">15</div><div class="text-textDim text-xs mt-1">Anomalies</div></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-heading text-lg font-bold text-headingColor mb-3">Employee Attendance Summary</h3>
+                    <div class="rpt-wrap">
+                        <table class="rpt">
+                            <thead><tr><th class="num">#</th><th>Name</th><th class="num">Present</th><th class="num">Absent</th><th class="num">OT Hrs</th><th class="num">Total Hrs</th><th>Attendance</th></tr></thead>
+                            <tbody>
+<tr><td class="num">1</td><td>P Ram Kumar</td><td class="num">17</td><td class="num">8</td><td class="num">4.7</td><td class="num">148.8</td><td><div class="bar"><span style="width:68%"></span></div><span class="pct">68%</span></td></tr>
+<tr><td class="num">2</td><td>Panchan Kumar</td><td class="num">21</td><td class="num">4</td><td class="num">8.8</td><td class="num">175</td><td><div class="bar"><span style="width:84%"></span></div><span class="pct">84%</span></td></tr>
+<tr><td class="num">3</td><td>Rehana Begam</td><td class="num">11</td><td class="num">14</td><td class="num">0</td><td class="num">83.3</td><td><div class="bar"><span style="width:44%"></span></div><span class="pct">44%</span></td></tr>
+<tr><td class="num">4</td><td>Ritesh Kumar</td><td class="num">21</td><td class="num">4</td><td class="num">20</td><td class="num">194.8</td><td><div class="bar"><span style="width:84%"></span></div><span class="pct">84%</span></td></tr>
+<tr><td class="num">5</td><td>Shravan Kumar</td><td class="num">20</td><td class="num">5</td><td class="num">2.2</td><td class="num">136</td><td><div class="bar"><span style="width:80%"></span></div><span class="pct">80%</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-heading text-lg font-bold text-headingColor mb-3">Anomaly Detection <span class="text-textDim text-sm font-normal">(8 of 15 shown)</span></h3>
+                    <div class="rpt-wrap">
+                        <table class="rpt">
+                            <thead><tr><th>Date</th><th>Employee</th><th>Type</th><th>Severity</th></tr></thead>
+                            <tbody>
+<tr><td>2026-05-14</td><td>Shravan Kumar</td><td>Short Day</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-18</td><td>Shravan Kumar</td><td>Half Day</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-19</td><td>Shravan Kumar</td><td>Half Day</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-20</td><td>Panchan Kumar</td><td>Short Day</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-21</td><td>Panchan Kumar</td><td>Short Day</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-26</td><td>Rehana Begam</td><td>Missing Tap Out</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-26</td><td>Rehana Begam</td><td>Single Swipe</td><td><span class="sev">Medium</span></td></tr>
+<tr><td>2026-05-26</td><td>Rehana Begam</td><td>Half Day</td><td><span class="sev">Medium</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
