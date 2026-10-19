@@ -43,7 +43,7 @@ if SUPABASE_URL and SUPABASE_KEY:
 # (.env, .py, .csv, .md, ...) returns 404 instead of leaking source or data.
 ALLOWED_STATIC_EXTENSIONS = {
     '.html', '.css', '.js', '.png', '.jpg', '.jpeg', '.webp', '.svg',
-    '.ico', '.xml', '.txt', '.woff', '.woff2',
+    '.ico', '.xml', '.txt', '.woff', '.woff2', '.pdf',
 }
 
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
