@@ -1,15 +1,14 @@
-import csv
 import os
 import re
+import smtplib
 import time
 from collections import defaultdict, deque
-from datetime import datetime
+from email.message import EmailMessage
 
 import openai
 from dotenv import load_dotenv
 from flask import Flask, abort, jsonify, request, send_from_directory
 from flask_cors import CORS
-from supabase import Client, create_client
 
 # Load environment variables
 load_dotenv()
@@ -27,17 +26,6 @@ CORS(app, origins=[
     "http://localhost:5000",
     "http://127.0.0.1:5000",
 ])
-
-# Supabase Initialization
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-supabase: Client = None
-if SUPABASE_URL and SUPABASE_KEY:
-    try:
-        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-        print("Supabase client initialized.")
-    except Exception as e:
-        print(f"Failed to initialize Supabase: {e}")
 
 # Only file types the website actually needs are served; everything else
 # (.env, .py, .csv, .md, ...) returns 404 instead of leaking source or data.
@@ -66,13 +54,6 @@ def _rate_limited(ip: str) -> bool:
     return False
 
 
-def _sanitize_csv_cell(value: str) -> str:
-    # Cells starting with = + - @ execute as formulas when opened in Excel
-    if value and value[0] in ('=', '+', '-', '@'):
-        return "'" + value
-    return value
-
-
 @app.route('/')
 def serve_index():
     return send_from_directory('.', 'index.html')
@@ -98,50 +79,40 @@ def submit_contact():
         return jsonify({"status": "error", "message": "Too many requests. Please try again in a minute."}), 429
 
     data = request.get_json(silent=True) or {}
-    name = (data.get('name') or '').strip()[:100]
+    # Collapse whitespace so a name can't smuggle newlines into email headers
+    name = ' '.join((data.get('name') or '').split())[:100]
     email = (data.get('email') or '').strip()[:254]
     message = (data.get('message') or '').strip()[:2000]
 
     if not name or not message or not EMAIL_RE.match(email):
         return jsonify({"status": "error", "message": "Please provide a valid name, email and message."}), 400
 
-    saved = False
+    # SMTP_PASSWORD must be a Gmail App Password, not the account's login password
+    smtp_user = os.getenv("SMTP_USER")
+    smtp_password = os.getenv("SMTP_PASSWORD")
+    error = jsonify({
+        "status": "error",
+        "message": "We could not send your message right now. Please email us at scshyd2013@gmail.com.",
+    }), 500
+    if not (smtp_user and smtp_password):
+        print("Contact form: SMTP_USER / SMTP_PASSWORD not configured")
+        return error
 
-    # Local-dev convenience log; fails harmlessly on read-only serverless
+    msg = EmailMessage()
+    msg["Subject"] = f"Website enquiry from {name}"
+    msg["From"] = smtp_user
+    msg["To"] = os.getenv("CONTACT_TO") or smtp_user
+    msg["Reply-To"] = email  # reply goes straight to the visitor
+    msg.set_content(f"Name: {name}\nEmail: {email}\n\n{message}")
+
     try:
-        file_exists = os.path.isfile('messages.csv')
-        with open('messages.csv', 'a', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            if not file_exists:
-                writer.writerow(['Timestamp', 'Name', 'Email', 'Message'])
-            writer.writerow([
-                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                _sanitize_csv_cell(name),
-                _sanitize_csv_cell(email),
-                _sanitize_csv_cell(message),
-            ])
-        saved = True
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=10) as smtp:
+            smtp.login(smtp_user, smtp_password)
+            smtp.send_message(msg)
     except Exception as e:
-        print(f"Skipping CSV save (likely read-only serverless environment): {e}")
-
-    if supabase:
-        try:
-            supabase.table('contacts').insert({
-                "name": name,
-                "email": email,
-                "message": message,
-            }).execute()
-            saved = True
-            print("Contact successfully saved to Supabase DB.")
-        except Exception as e:
-            print(f"Supabase Insert Error: {e}")
-
-    if not saved:
-        # Don't tell the visitor their message was sent when nothing stored it
-        return jsonify({
-            "status": "error",
-            "message": "We could not save your message right now. Please email us at scshyd2013@gmail.com.",
-        }), 500
+        # Don't tell the visitor their message was sent when it wasn't
+        print(f"Contact email failed: {e}")
+        return error
 
     return jsonify({"status": "success", "message": "Message received!"})
 
